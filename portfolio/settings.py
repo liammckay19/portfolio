@@ -121,6 +121,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", 'https')
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 # STATICFILES_DIRS = [
@@ -128,12 +134,10 @@ USE_TZ = True
 # ]
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 STATIC_URL = '/static/'
-
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'liammckay2019@gmail.com'
@@ -141,3 +145,6 @@ EMAIL_HOST_PASSWORD = 'ikmmesvstezpxwuv'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
