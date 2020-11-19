@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'home:home' %}">Home</a></li>
+
+    <li class="breadcrumb-item active"><a href="{% url 'science:home' %}">Science</a></li>
+{% endblock %}
+{% block content %}
+    <h2 class="display-4">Relevant Projects</h2>
+
+    <div class="container-fluid p-2">
+        <div class="row">
+            {% for sp in sci_proj %}
+                <div class="col p-2">
+
+                    <div class="card" style="width: 18rem;">
+                        <a href="{{ sp.external_link }}"><img src="/media/{{ sp.thumbnail.upload }}"
+                                                              class="card-img-top" alt="{{ sp.title }}"></a>
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{{ sp.external_link }}">{{ sp.title }}</a></h5>
+                            <h6>{{ sp.organization }}</h6>
+                            <p>{{ sp.date_started }} - {{ sp.date_ended }}</p>
+                            <p class="card-text">{{ sp.description }}</p>
+                            {% for skill in sp.skills.all %}
+                                <span class="badge badge-info"
+                                      style="background-color: {{ skill.color }}">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

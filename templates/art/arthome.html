@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'home:home' %}">Home</a></li>
+
+    <li class="breadcrumb-item active"><a href="{% url 'art:home' %}">Art</a></li>
+{% endblock %}
+{% block content %}
+
+    <h2 class="display-4">Music</h2>
+
+    <div class="container-fluid p-2">
+        <div class="row">
+            {% for ap in art_proj %}
+                <div class="col p-2">
+
+                    <div class="card" style="width: 18rem;">
+                        <a href="{{ ap.external_link }}">
+                            {% if ap.embedHTML %}
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    {{ ap.embedHTML|safe }}
+                                </div>
+                            {% else %}
+                                <img src="/media/{{ ap.thumbnail.upload }}"
+                                     class="card-img-top" alt="{{ ap.title }}"></a>
+                            {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{{ ap.external_link }}">{{ ap.title }}</a></h5>
+                            <h6>{{ ap.organization }}</h6>
+                            <p>{{ ap.date_started }} - {{ ap.date_ended }}</p>
+                            <p class="card-text">{{ ap.description }}</p>
+                            {% for skill in ap.skills.all %}
+                                <span class="badge badge-info"
+                                      style="background-color: {{ skill.color }}">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

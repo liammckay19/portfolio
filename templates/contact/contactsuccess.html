@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'home:home' %}">Home</a></li>
+
+    <li class="breadcrumb-item active"><a href="{% url 'contact:home' %}">Contact</a></li>
+{% endblock %}
+{% block content %}
+<h2>Thank you for reaching out! I will be contacting you shortly</h2>
+{% endblock %}
