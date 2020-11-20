@@ -2,12 +2,15 @@ from django.db import models
 from django.utils import timezone
 from portfolio.settings import MEDIA_ROOT
 import datetime
-
+import os
 from aboutme import models as aboutme
 from experience import models as experience
 
 app_label = 'art'
 
+def art_media_dir(instance,filename):
+    # return the whole path to the file
+    return os.path.join('art', filename)
 
 class Event(models.Model):
     title = models.CharField(verbose_name="Event title", max_length=200)
@@ -25,7 +28,7 @@ class Media(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, verbose_name='Date created on this website')
     date_modified = models.DateTimeField(auto_now_add=True, verbose_name='Date changed on this website')
     date_recorded = models.DateField(verbose_name="Day media was recorded")
-    upload = models.ImageField(upload_to='art/', null=True, blank=True)
+    upload = models.ImageField(upload_to=art_media_dir, null=True, blank=True)
 
     def __str__(self):
         return self.upload.name

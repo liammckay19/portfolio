@@ -2,4 +2,6 @@
 **/migrations/**
 **.pyc
 **/venv/**
-portfolio/settings.py
+**/portfolio/settings.py
+
+.pyc
