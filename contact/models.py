@@ -1,5 +1,5 @@
 from django.db import models
-
+import os
 
 def icon_media_dir(instance,filename):
     # return the whole path to the file
