@@ -141,3 +141,6 @@ EMAIL_HOST_PASSWORD = 'ikmmesvstezpxwuv'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
