@@ -2,7 +2,7 @@ from django.db import models
 from experience import models as experience
 
 from portfolio.settings import MEDIA_ROOT
-
+import os
 
 
 def sci_media_dir(instance,filename):
